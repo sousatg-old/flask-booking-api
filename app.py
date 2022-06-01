@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api, Resource
 from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
-from datetime import datetime, date
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -14,6 +13,7 @@ db = SQLAlchemy(app)
 api = Api(app)
 ma = Marshmallow(app)
 mi = Migrate(app, db)
+
 
 class Booking(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -29,6 +29,7 @@ class BookingSchema(ma.Schema):
     class Meta:
         fields = ('id', 'date', 'start_time', 'end_time')
 
+
 class BookingList(Resource):
     def get(self):
         bookings = Booking.query.all()
@@ -39,7 +40,10 @@ class BookingList(Resource):
         data = request.json
 
         booking = Booking(data["start_time"], data["end_time"])
-        bookings = Booking.query.filter(Booking.start_time >= data["start_time"], Booking.end_time <= data["end_time"]).first()
+        bookings = Booking.query.filter(
+            Booking.start_time >= data["start_time"],
+            Booking.end_time <= data["end_time"]
+        ).first()
 
         if bookings:
             return BookingSchema(many=False).dump(booking), 400
