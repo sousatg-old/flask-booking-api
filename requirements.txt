@@ -5,3 +5,4 @@ Flask-RESTful
 Flask-SQLAlchemy
 gunicorn
 marshmallow-sqlalchemy
+python-dotenv
