@@ -3,9 +3,13 @@ from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api, Resource
 from flask_migrate import Migrate, upgrade
+from config import Config
 
 app = Flask(__name__)
 
+app.config.from_object(Config)
+
+""""
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://dev:dev@db/test'
 
 app.config.update(
@@ -14,6 +18,7 @@ app.config.update(
     SQLALCHEMY_TRACK_MODIFICATIONS=False,
     SECRET_KEY='192b9bdd22ab9ed4d12e236c78afcb9a393ec15f71bbf5dc987d54727823bcbf'
 )
+"""
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
