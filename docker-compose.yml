@@ -2,8 +2,27 @@ version: '2'
 services:
   api:
     build: ./
-    ports:
-      - "80:80"
+    container_name: flask-booking-api
+    command: gunicorn -b 0.0.0.0:80 app:app
     volumes:
       - ./:/api
-    working_dir: /api
+    ports:
+      - "80:80"
+    env_file:
+      - ./.env
+    depends_on:
+      - "db"
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=dev
+      - MYSQL_DATABASE=test
+      - MYSQL_PASSWORD=dev
+    ports:
+      - "3306:3306"
+    volumes:
+      - datavolume:/var/lib/mysql
+
+volumes:
+  datavolume:

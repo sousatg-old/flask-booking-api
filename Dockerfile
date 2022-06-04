@@ -13,6 +13,4 @@ RUN pip install --upgrade pip
 # Install dependencies:
 RUN pip install --no-cache-dir -r /api/requirements.txt
 
-RUN flask db upgrade head
-
 EXPOSE 80
