@@ -1,19 +1,18 @@
-FROM python:3.5
+FROM python:latest
 
 ENV PYTHONUNBUFFERED 1
 
-#COPY . /api
-
-COPY migrations /api/migrations
-COPY requirements.txt /api/requirements.txt
-COPY app.py /api/app.py
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 WORKDIR /api
+COPY . .
+RUN pip install --upgrade pip
 
+# Install dependencies:
+RUN pip install --no-cache-dir -r /api/requirements.txt
 
-RUN pip install -r /api/requirements.txt
-RUN flask db upgrade
+RUN flask db upgrade head
 
 EXPOSE 80
-
-CMD gunicorn -b 0.0.0.0:80 app:app
