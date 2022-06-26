@@ -3,7 +3,9 @@ services:
   api:
     build: ./
     container_name: flask-booking-api
-    command: gunicorn -b 0.0.0.0:80 app:app
+    command: gunicorn -b 0.0.0.0:80 app:app --reload
+    volumes:
+      - ./:/api
     ports:
       - "80:80"
     env_file:

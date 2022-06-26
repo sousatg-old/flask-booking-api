@@ -1,5 +1,8 @@
 .DEFAULT_GOAL := help
-.PHONY: run help lint
+.PHONY: dev build run help lint update-swagger
+
+dev:
+	docker-compose -f docker-compose.dev.yml up --build
 
 build:
 	docker-compose build
