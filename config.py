@@ -16,11 +16,6 @@ class Config:
     SQLALCHEMY_COMMIT_ON_TEARDOWN = getenv('SQLALCHEMY_COMMIT_ON_TEARDOWN')
     SQLALCHEMY_DATABASE_URI = getenv('SQLALCHEMY_DATABASE_URI')
 
-    SWAGGER = {
-        'title': 'Flasgger Parsed Method/Function View Example',
-        'doc_dir': os.path.join(basedir, '/specs')
-    }
-
     @staticmethod
     def init_app(app):
         pass
