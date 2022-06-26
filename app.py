@@ -16,7 +16,12 @@ api = Api(app)
 mi = Migrate(app, db)
 
 
-api_doc(app, config_path='./specs/test.yaml', url_prefix='/api/doc', title='API doc')
+api_doc(
+    app,
+    config_path='./specs/test.yaml',
+    url_prefix='/api/doc',
+    title='API doc'
+)
 
 
 def create_app():
@@ -24,10 +29,7 @@ def create_app():
 
     app.config.from_object(Config)
 
-    db = SQLAlchemy(app)
-    ma = Marshmallow(app)
-    api = Api(app)
-    mi = Migrate(app, db)
+    return app
 
 
 class Booking(db.Model):
