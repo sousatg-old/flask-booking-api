@@ -23,3 +23,6 @@ Werkzeug==2.1.2
 zipp==3.8.0
 marshmallow-sqlalchemy
 mysqlclient
+flasgger
+apispec==0.38
+swagger-ui-py

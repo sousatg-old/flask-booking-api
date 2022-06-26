@@ -1,0 +1,9 @@
+summary: Post a message to Slack
+requestBody:
+  content:
+    application/json:
+      schema:
+        $ref: '#/components/schemas/Booking'
+  responses:
+    '200':
+      description: OK
