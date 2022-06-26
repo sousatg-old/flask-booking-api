@@ -9,3 +9,6 @@ run:
 
 lint:
 	flake8 .
+
+update-swagger:
+	python3 tools/update.py --ui --editor
