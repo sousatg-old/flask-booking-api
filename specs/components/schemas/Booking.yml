@@ -1,7 +1,0 @@
-Booking:
-  type: object
-  properties:
-    start_time:
-      type: string
-    end_time:
-      type: string
